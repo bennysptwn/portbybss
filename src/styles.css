@@ -1,1 +1,239 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   portbybss — Global Stylesheet
+   ============================================================ */
+
+/* ── Spacing tokens ──────────────────────────────────────── */
+:root {
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
+    --nav-width-desktop: 220px;
+    --nav-width-collapsed: 60px;
+    --nav-height-mobile: 60px;
+    --font-size-xs: 0.7rem;
+    --font-size-sm: 0.8125rem;
+    --font-size-base: 0.9375rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.75rem;
+    --line-height-base: 1.6;
+    --line-height-tight: 1.15;
+    --letter-spacing-base: 0.01em;
+    --letter-spacing-wide: 0.1em;
+}
+
+/* ── Dark theme ──────────────────────────────────────────── */
+body.theme-dark {
+    --color-bg: #050505;
+    --color-bg-secondary: #000000;
+    --color-sidebar: #080808;
+    --color-surface: rgba(255, 255, 255, 0.03);
+    --color-surface-hover: rgba(255, 255, 255, 0.07);
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-strong: rgba(255, 255, 255, 0.18);
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #c0c0c0;
+    --color-text-muted: #666666;
+    --color-accent: #ffffff;
+    --color-accent-dim: rgba(255, 255, 255, 0.5);
+    --color-accent-bg: rgba(255, 255, 255, 0.06);
+    --color-status-available: #4ade80;
+    --color-status-limited: #facc15;
+    --color-status-unavailable: #f87171;
+    --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.6);
+    --grid-color: rgba(255, 255, 255, 0.025);
+}
+
+/* ── Light theme ─────────────────────────────────────────── */
+body.theme-light {
+    --color-bg: #f8f8f8;
+    --color-bg-secondary: #efefef;
+    --color-sidebar: #e8e8e8;
+    --color-surface: rgba(0, 0, 0, 0.03);
+    --color-surface-hover: rgba(0, 0, 0, 0.06);
+    --color-border: rgba(0, 0, 0, 0.10);
+    --color-border-strong: rgba(0, 0, 0, 0.25);
+    --color-text-primary: #0a0a0a;
+    --color-text-secondary: #444444;
+    --color-text-muted: #888888;
+    --color-accent: #000000;
+    --color-accent-dim: rgba(0, 0, 0, 0.5);
+    --color-accent-bg: rgba(0, 0, 0, 0.06);
+    --color-status-available: #16a34a;
+    --color-status-limited: #ca8a04;
+    --color-status-unavailable: #dc2626;
+    --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.08);
+    --grid-color: rgba(0, 0, 0, 0.04);
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Base body + grid background ────────────────────────── */
+body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    letter-spacing: var(--letter-spacing-base);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* ── Focus ───────────────────────────────────────────────── */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+}
+
+/* ── Section header shared ───────────────────────────────── */
+.section-tag {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+}
+
+.section-heading {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+}
+
+.section-subheading {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+}
+
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+    margin: var(--space-6) 0;
+}
+
+/* ── Tab bar shared ──────────────────────────────────────── */
+.tab-bar {
+    display: flex;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+}
+
+.tab-bar__btn {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-family: inherit;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--transition-base), color var(--transition-base);
+    position: relative;
+}
+
+.tab-bar__btn+.tab-bar__btn {
+    border-left: 1px solid var(--color-border-strong);
+}
+
+.tab-bar__btn.active {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-weight: 700;
+}
+
+.tab-bar__btn:not(.active):hover {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+}
+
+/* ── Glassmorphism ───────────────────────────────────────── */
+.glass-card {
+    background: var(--color-surface);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-enter {
+    animation: fade-in 400ms ease forwards;
+}
+
+@keyframes blink-cursor {
+
+    0%,
+    100% {
+        border-right-color: var(--color-text-primary);
+    }
+
+    50% {
+        border-right-color: transparent;
+    }
+}
+
+/* ── Interactive transitions ─────────────────────────────── */
+a,
+button,
+[role="button"] {
+    transition: var(--transition-base);
+}

@@ -1,0 +1,60 @@
+<nav class="nav" [class.nav--collapsed]="collapsed()" aria-label="Main navigation">
+
+  <!-- Brand + collapse toggle -->
+  <div class="nav__top">
+    <div class="nav__brand">
+      @if (!collapsed()) {
+        <span class="nav__brand-name">portbybss</span>
+      }
+    </div>
+    <button
+      class="nav__collapse-btn"
+      (click)="toggleCollapse()"
+      [attr.aria-label]="collapsed() ? 'Expand sidebar' : 'Collapse sidebar'"
+      type="button"
+    >
+      @if (collapsed()) {
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      }
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <ul class="nav__links" role="list">
+    @for (link of navLinks; track link.path) {
+      <li class="nav__item">
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          class="nav__link"
+          [attr.aria-label]="link.label"
+          [attr.title]="collapsed() ? link.label : null"
+        >
+          <span class="nav__link-icon" [innerHTML]="link.safeSvgIcon"></span>
+          @if (!collapsed()) {
+            <span class="nav__link-label">{{ link.label }}</span>
+          }
+        </a>
+      </li>
+    }
+  </ul>
+
+  <!-- Desktop theme toggle -->
+  <button
+    class="nav__theme-toggle nav__theme-toggle--desktop"
+    (click)="themeService.toggle()"
+    [attr.aria-label]="'Switch to ' + (themeService.theme() === 'dark' ? 'light' : 'dark') + ' mode'"
+    [attr.title]="collapsed() ? (themeService.theme() === 'dark' ? 'Light mode' : 'Dark mode') : null"
+    type="button"
+  >
+    @if (themeService.theme() === 'dark') {
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      @if (!collapsed()) { <span>Light mode</span> }
+    } @else {
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      @if (!collapsed()) { <span>Dark mode</span> }
+    }
+  </button>
+</nav>

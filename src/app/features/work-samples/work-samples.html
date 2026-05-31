@@ -1,0 +1,73 @@
+<section class="work-samples section-enter">
+  <!-- Header -->
+  <div class="ws__header">
+    <p class="section-tag">§ 04</p>
+    <h1 class="section-heading">Work Samples</h1>
+    <p class="section-subheading">Click any row — the whole thing is the link.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Category tabs -->
+  <div class="tab-bar" role="tablist" aria-label="Project categories">
+    @for (cat of categories; track cat.key) {
+      <button
+        class="tab-bar__btn"
+        [class.active]="activeCategory() === cat.key"
+        (click)="setCategory(cat.key)"
+        role="tab"
+        [attr.aria-selected]="activeCategory() === cat.key"
+        type="button"
+      >
+        {{ cat.label }} [{{ countFor(cat.key) }}]
+      </button>
+    }
+  </div>
+
+  <!-- Project rows -->
+  <div class="ws__list">
+    @for (project of filteredProjects(); track project.title; let i = $index) {
+      @if (project.link) {
+        <a
+          [href]="project.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-row project-row--link"
+          [attr.aria-label]="'View ' + project.title"
+        >
+          <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <div class="project-row__body">
+            <div class="project-row__title-line">
+              <span class="project-row__title">{{ project.title }}</span>
+              <span class="project-row__role">/ {{ project.role }}</span>
+            </div>
+            <p class="project-row__desc">{{ project.description }}</p>
+            <div class="project-row__tags">
+              @for (tech of project.technologies; track tech) {
+                <span class="project-row__tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+          <span class="project-row__arrow" [innerHTML]="arrowIcon" aria-hidden="true"></span>
+        </a>
+      } @else {
+        <div class="project-row project-row--disabled" aria-disabled="true">
+          <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <div class="project-row__body">
+            <div class="project-row__title-line">
+              <span class="project-row__title">{{ project.title }}</span>
+              <span class="project-row__role">/ {{ project.role }}</span>
+            </div>
+            <p class="project-row__desc">{{ project.description }}</p>
+            <div class="project-row__tags">
+              @for (tech of project.technologies; track tech) {
+                <span class="project-row__tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+          <span class="project-row__arrow project-row__arrow--disabled" aria-hidden="true">—</span>
+        </div>
+      }
+    }
+  </div>
+</section>

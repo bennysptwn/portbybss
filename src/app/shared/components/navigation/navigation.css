@@ -1,0 +1,260 @@
+/* ── Desktop sidebar ─────────────────────────────────────── */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--nav-width-desktop);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6) var(--space-3);
+    background: var(--color-sidebar);
+    border-right: 1px solid var(--color-border);
+    z-index: 100;
+    transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Collapsed state */
+.nav--collapsed {
+    width: var(--nav-width-collapsed);
+}
+
+/* ── Top row: brand + collapse btn ───────────────────────── */
+.nav__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+    min-height: 32px;
+    padding: 0 var(--space-1);
+}
+
+.nav__brand {
+    overflow: hidden;
+    flex: 1;
+}
+
+.nav__brand-name {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-primary);
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+/* Collapsed brand: stacked letters */
+.nav__brand-mini {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 1px;
+}
+
+.nav__brand-mini-line {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-text-primary);
+    text-transform: lowercase;
+}
+
+/* Collapse toggle button */
+.nav__collapse-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color var(--transition-base), background var(--transition-base);
+}
+
+.nav__collapse-btn:hover {
+    color: var(--color-text-primary);
+    background: var(--color-surface-hover);
+}
+
+/* ── Nav links ───────────────────────────────────────────── */
+.nav__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.nav__item {
+    display: block;
+}
+
+.nav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-base);
+    transition: color var(--transition-base), background-color var(--transition-base);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nav--collapsed .nav__link {
+    justify-content: center;
+    padding: var(--space-3) var(--space-2);
+    gap: 0;
+}
+
+.nav__link:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-hover);
+}
+
+.nav__link.active {
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-hover);
+}
+
+.nav__link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.nav__link-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.nav__link-label {
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+    overflow: hidden;
+}
+
+/* ── Desktop theme toggle ────────────────────────────────── */
+.nav__theme-toggle--desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: var(--space-4);
+    transition: color var(--transition-base), background-color var(--transition-base);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav__theme-toggle--desktop:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-hover);
+}
+
+/* ── Mobile bottom bar ───────────────────────────────────── */
+@media (max-width: 768px) {
+    .nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: var(--nav-height-mobile);
+        flex-direction: row;
+        align-items: center;
+        justify-content: stretch;
+        padding: 0;
+        border-right: none;
+        border-top: 1px solid var(--color-border);
+        background: var(--color-sidebar);
+        transition: none;
+    }
+
+    .nav--collapsed {
+        width: 100vw;
+    }
+
+    .nav__top {
+        display: none;
+    }
+
+    .nav__theme-toggle--desktop {
+        display: none;
+    }
+
+    .nav__links {
+        flex-direction: row;
+        flex: 1;
+        gap: 0;
+        height: 100%;
+        align-items: stretch;
+    }
+
+    .nav__item {
+        flex: 1;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .nav__link {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: var(--space-2) var(--space-1);
+        border-radius: 0;
+        font-size: 9px;
+        letter-spacing: 0;
+        color: var(--color-text-muted);
+        width: 100%;
+        overflow: visible;
+    }
+
+    .nav__link.active {
+        color: var(--color-text-primary);
+        background-color: transparent;
+        border-top: 2px solid var(--color-accent);
+    }
+
+    .nav__link:hover {
+        background-color: var(--color-surface-hover);
+    }
+
+    .nav__link-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav__link-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav__link-label {
+        font-size: 9px;
+        white-space: nowrap;
+        display: block;
+    }
+}

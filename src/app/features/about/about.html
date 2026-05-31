@@ -1,0 +1,108 @@
+<section class="about section-enter">
+  <!-- Header -->
+  <div class="about__header-block">
+    <p class="section-tag">§ 02</p>
+    <h1 class="section-heading">About</h1>
+    <p class="section-subheading">Three angles on the same person.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Tab bar -->
+  <div class="tab-bar" role="tablist" aria-label="About sections">
+    <button
+      class="tab-bar__btn"
+      [class.active]="activeTab() === 'description'"
+      (click)="selectTab('description')"
+      role="tab"
+      [attr.aria-selected]="activeTab() === 'description'"
+      type="button"
+    >Description</button>
+    <button
+      class="tab-bar__btn"
+      [class.active]="activeTab() === 'working-fields'"
+      (click)="selectTab('working-fields')"
+      role="tab"
+      [attr.aria-selected]="activeTab() === 'working-fields'"
+      type="button"
+    >Working Fields</button>
+    <button
+      class="tab-bar__btn"
+      [class.active]="activeTab() === 'quotes'"
+      (click)="selectTab('quotes')"
+      role="tab"
+      [attr.aria-selected]="activeTab() === 'quotes'"
+      type="button"
+    >Quotes</button>
+  </div>
+
+  <!-- Tab content -->
+  @switch (activeTab()) {
+
+    @case ('description') {
+      <div role="tabpanel" class="tab-panel">
+        @for (para of biography; track $index) {
+          <p class="bio-paragraph">{{ para }}</p>
+        }
+      </div>
+    }
+
+    @case ('working-fields') {
+      <div role="tabpanel" class="fields-layout">
+        <!-- Left: field list in 2 columns -->
+        <div class="fields-list">
+          @for (field of workingFields; track field.title) {
+            <button
+              class="field-card"
+              [class.field-card--active]="selectedField()?.title === field.title"
+              (click)="selectField(field)"
+              type="button"
+            >
+              <span class="field-card__status">
+                <span class="field-card__dot"
+                  [class.field-card__dot--exp]="field.status === 'experienced'"
+                  [class.field-card__dot--learn]="field.status === 'learning'"></span>
+                <span class="field-card__status-text">{{ field.status | uppercase }}</span>
+              </span>
+              <span class="field-card__title">{{ field.title }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Right: selected field detail -->
+        @if (selectedField(); as field) {
+          <div class="field-detail">
+            <p class="field-detail__label">SELECTED FIELD</p>
+            <h2 class="field-detail__title">{{ field.title }}</h2>
+            <p class="field-detail__subtitle">{{ field.subtitle }}</p>
+            <p class="field-detail__stack-label">STACK</p>
+            <div class="field-detail__tags">
+              @for (tech of field.technologies; track tech.name) {
+                <span class="field-detail__tag">{{ tech.name }}</span>
+              }
+            </div>
+            <div class="field-detail__badge" [class.field-detail__badge--exp]="field.status === 'experienced'" [class.field-detail__badge--learn]="field.status === 'learning'">
+              <span class="field-detail__badge-dot"></span>
+              {{ field.status | uppercase }}
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @case ('quotes') {
+      <div role="tabpanel" class="tab-panel">
+        @for (quote of quotes; track $index) {
+          <blockquote class="quote-card">
+            <p class="quote-card__text">"{{ quote.text }}"</p>
+            <footer class="quote-card__footer">
+              — {{ quote.author }}
+              @if (quote.source) { <cite class="quote-card__source">, {{ quote.source }}</cite> }
+            </footer>
+          </blockquote>
+        }
+      </div>
+    }
+
+  }
+</section>

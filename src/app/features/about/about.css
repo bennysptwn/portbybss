@@ -1,0 +1,318 @@
+.about {
+    max-width: 100%;
+    padding-bottom: var(--space-12);
+    position: relative;
+    z-index: 1;
+}
+
+.about__header-block {
+    margin-bottom: var(--space-6);
+}
+
+/* ── Tab panels ──────────────────────────────────────────── */
+.tab-panel {
+    animation: fade-in 300ms ease forwards;
+}
+
+.bio-paragraph {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-base);
+    margin-bottom: var(--space-4);
+    max-width: 680px;
+}
+
+/* ── Working fields layout — desktop ─────────────────────── */
+.fields-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    animation: fade-in 300ms ease forwards;
+    align-items: start;
+}
+
+/* Desktop: 2-column card grid */
+.fields-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    align-content: start;
+}
+
+/* ── Field card — desktop (sticky-note style) ────────────── */
+.field-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-5) var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    position: relative;
+    box-shadow:
+        0 1px 0 var(--color-border),
+        0 3px 0 rgba(0, 0, 0, 0.18),
+        0 5px 0 rgba(0, 0, 0, 0.08),
+        0 6px 10px rgba(0, 0, 0, 0.22);
+    transition:
+        border-color var(--transition-base),
+        background var(--transition-base),
+        transform var(--transition-base),
+        box-shadow var(--transition-base);
+}
+
+.field-card:hover {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface-hover);
+    transform: translateY(-3px);
+    box-shadow:
+        0 1px 0 var(--color-border),
+        0 5px 0 rgba(0, 0, 0, 0.18),
+        0 8px 0 rgba(0, 0, 0, 0.08),
+        0 10px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* Active: white card, black text — clean inversion */
+.field-card--active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.15),
+        0 5px 0 rgba(0, 0, 0, 0.25),
+        0 8px 0 rgba(0, 0, 0, 0.12),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.field-card--active .field-card__status,
+.field-card--active .field-card__title {
+    color: var(--color-bg);
+}
+
+.field-card--active .field-card__dot--exp,
+.field-card--active .field-card__dot--learn {
+    background: var(--color-bg);
+}
+
+.field-card__status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.field-card__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.field-card__dot--exp {
+    background: var(--color-status-available);
+}
+
+.field-card__dot--learn {
+    background: var(--color-status-limited);
+}
+
+.field-card__title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+}
+
+/* ── Field detail panel ──────────────────────────────────── */
+.field-detail {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6) var(--space-7);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    background: var(--color-surface);
+    position: sticky;
+    top: var(--space-8);
+    box-shadow:
+        0 1px 0 var(--color-border),
+        0 2px 0 rgba(0, 0, 0, 0.12),
+        0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.field-detail__label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.field-detail__title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+}
+
+.field-detail__subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-top: calc(-1 * var(--space-2));
+}
+
+.field-detail__stack-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.field-detail__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.field-detail__tag {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-primary);
+}
+
+.field-detail__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    border: 1px solid;
+    width: fit-content;
+}
+
+.field-detail__badge--exp {
+    color: var(--color-status-available);
+    border-color: var(--color-status-available);
+}
+
+.field-detail__badge--learn {
+    color: var(--color-status-limited);
+    border-color: var(--color-status-limited);
+}
+
+.field-detail__badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+}
+
+/* ── Quotes ──────────────────────────────────────────────── */
+.quote-card {
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.quote-card:first-child {
+    border-top: 1px solid var(--color-border);
+}
+
+.quote-card__text {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-base);
+    font-style: italic;
+    max-width: 680px;
+}
+
+.quote-card__footer {
+    margin-top: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.quote-card__source {
+    font-style: normal;
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Stack: detail on top, list below */
+    .fields-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .field-detail {
+        order: -1;
+        position: static;
+        padding: var(--space-5) var(--space-5);
+    }
+
+    /* Mobile: single-column list rows */
+    .fields-list {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        order: 1;
+    }
+
+    /* Mobile field card: horizontal row layout */
+    .field-card {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-4) var(--space-4);
+        border-radius: var(--radius-sm);
+        box-shadow:
+            0 1px 0 var(--color-border),
+            0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .field-card:hover {
+        transform: none;
+        box-shadow:
+            0 1px 0 var(--color-border),
+            0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .field-card--active {
+        transform: none;
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.1),
+            0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Left: status indicator column */
+    .field-card__status {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        width: 14px;
+    }
+
+    .field-card__dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Hide the status text on mobile — dot is enough */
+    .field-card__status-text {
+        display: none;
+    }
+
+    .field-card__title {
+        font-size: var(--font-size-sm);
+        flex: 1;
+    }
+}

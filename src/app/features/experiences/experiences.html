@@ -1,0 +1,57 @@
+<section class="experiences section-enter">
+  <!-- Header -->
+  <div class="exp__header">
+    <p class="section-tag">§ 03</p>
+    <h1 class="section-heading">Experiences</h1>
+    <p class="section-subheading">Newest first. Expand any row to see what actually happened.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  @if (experiences.length === 0) {
+    <p class="exp__empty">No experience entries yet.</p>
+  } @else {
+    <div class="exp__list">
+      @for (exp of experiences; track exp.companyName; let i = $index) {
+        <div class="exp-row" [class.exp-row--open]="isOpen(i)">
+          <!-- Row header (always visible) -->
+          <button
+            class="exp-row__header"
+            (click)="toggle(i)"
+            [attr.aria-expanded]="isOpen(i)"
+            type="button"
+          >
+            <span class="exp-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <div class="exp-row__title-block">
+              <span class="exp-row__position">{{ exp.position }}</span>
+              <span class="exp-row__company">&#64; {{ exp.companyShort }}</span>
+            </div>
+            <span class="exp-row__chevron" aria-hidden="true">
+              @if (isOpen(i)) {
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              }
+            </span>
+          </button>
+
+          <!-- Date (always visible) -->
+          <p class="exp-row__date">{{ exp.employmentDate }}</p>
+
+          <!-- Expanded content -->
+          @if (isOpen(i)) {
+            <div class="exp-row__body">
+              @if (exp.descriptions.length > 0) {
+                <ul class="exp-row__desc-list">
+                  @for (desc of exp.descriptions; track $index) {
+                    <li class="exp-row__desc-item">{{ desc }}</li>
+                  }
+                </ul>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</section>

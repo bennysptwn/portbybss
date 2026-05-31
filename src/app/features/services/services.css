@@ -1,0 +1,450 @@
+.services {
+    max-width: 100%;
+    padding-bottom: var(--space-12);
+    position: relative;
+    z-index: 1;
+}
+
+.svc__header {
+    margin-bottom: var(--space-6);
+}
+
+/* ── Shared button ───────────────────────────────────────── */
+.svc__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+    letter-spacing: var(--letter-spacing-base);
+    border: 1px solid transparent;
+}
+
+.svc__btn--primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+    font-weight: 700;
+}
+
+.svc__btn--primary:hover {
+    opacity: 0.85;
+}
+
+.svc__btn--secondary {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-color: var(--color-border-strong);
+}
+
+.svc__btn--secondary:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-muted);
+}
+
+.svc__btn--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+}
+
+.svc__btn--large {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--font-size-base);
+}
+
+/* ── Top grid ────────────────────────────────────────────── */
+.svc__top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.svc__manifesto {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.svc__manifesto-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.svc__manifesto-text {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.svc__manifesto-sub {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-base);
+}
+
+.svc__availability {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.svc__avail-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.svc__avail-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.svc__avail-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.svc__avail-dot--available {
+    background: var(--color-status-available);
+    box-shadow: 0 0 8px var(--color-status-available);
+}
+
+.svc__avail-dot--limited {
+    background: var(--color-status-limited);
+    box-shadow: 0 0 8px var(--color-status-limited);
+}
+
+.svc__avail-dot--unavailable {
+    background: var(--color-status-unavailable);
+}
+
+.svc__avail-text {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+}
+
+.svc__avail-text--available {
+    color: var(--color-status-available);
+}
+
+.svc__avail-text--limited {
+    color: var(--color-status-limited);
+}
+
+.svc__avail-text--unavailable {
+    color: var(--color-status-unavailable);
+}
+
+.svc__currently {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.svc__currently-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--space-1);
+}
+
+.svc__currently-item {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+/* ── Stats ───────────────────────────────────────────────── */
+.svc__stats-section {
+    margin-bottom: var(--space-4);
+}
+
+.svc__stats-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--space-3);
+}
+
+.svc__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+}
+
+.svc__stat {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.svc__stat-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.svc__stat-value {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1;
+}
+
+/* ── Bottom grid ─────────────────────────────────────────── */
+.svc__bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.svc__hours {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6) var(--space-8);
+}
+
+.svc__hours-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+}
+
+.svc__hours-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.svc__hours-row {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.svc__hours-row:last-child {
+    border-bottom: none;
+}
+
+.svc__hours-day,
+.svc__hours-time {
+    padding: var(--space-3) 0;
+    font-size: var(--font-size-sm);
+}
+
+.svc__hours-day {
+    color: var(--color-text-muted);
+    width: 50%;
+}
+
+.svc__hours-time {
+    color: var(--color-text-primary);
+    text-align: right;
+}
+
+.svc__booking {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.svc__booking-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.svc__booking-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+}
+
+.svc__booking-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-base);
+}
+
+.svc__booking-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+/* ── Project interests ───────────────────────────────────── */
+.svc__interests-section {
+    margin-bottom: var(--space-4);
+}
+
+.svc__interests-header {
+    margin-bottom: var(--space-4);
+}
+
+.svc__interests-sub {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+}
+
+.svc__interests-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.svc__interest-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.svc__interest-card:hover {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface-hover);
+}
+
+.svc__interest-emoji {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.svc__interest-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+}
+
+.svc__interest-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-base);
+}
+
+/* ── Contact section ─────────────────────────────────────── */
+.svc__contact-section {
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: var(--space-8) var(--space-8);
+    background: var(--color-surface);
+}
+
+.svc__contact-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-8);
+    align-items: center;
+}
+
+.svc__contact-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.svc__contact-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+}
+
+.svc__contact-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-base);
+    white-space: pre-line;
+    max-width: 520px;
+}
+
+.svc__contact-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-3);
+    flex-shrink: 0;
+}
+
+.svc__contact-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    letter-spacing: var(--letter-spacing-base);
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    .svc__top-grid,
+    .svc__bottom-grid,
+    .svc__interests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .svc__stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .svc__contact-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .svc__contact-action {
+        align-items: flex-start;
+    }
+
+    .svc__manifesto,
+    .svc__availability,
+    .svc__hours,
+    .svc__booking,
+    .svc__interest-card {
+        padding: var(--space-5) var(--space-5);
+    }
+
+    .svc__contact-section {
+        padding: var(--space-6) var(--space-5);
+    }
+}
