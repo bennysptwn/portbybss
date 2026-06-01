@@ -1,59 +1,171 @@
-# Portbybss
+# portbybss
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+Personal portfolio website of **Benny Septiawan Salim** — a Full-Stack Software Engineer based in Tangerang, Indonesia.
 
-## Development server
+Built with Angular 20, standalone architecture, and zero CSS frameworks. Minimalist black & white aesthetic with an interactive canvas background, collapsible sidebar, and fully data-driven content.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 🔗 Live
+
+> https://portbybss.netlify.app
+
+---
+
+## 👤 About the Owner
+
+| | |
+|---|---|
+| **Name** | Benny Septiawan Salim |
+| **Alias** | bennysptwn |
+| **Born** | Jambi, 24 September 2001 |
+| **Based** | Tangerang, Indonesia |
+| **Education** | Bachelor of Informatics — Universitas Multimedia Nusantara |
+| **Focus** | Software Development |
+| **Email** | hello@bennysptwn.dev |
+| **Contact** | bennysptwn@gmail.com |
+
+**Socials**
+- GitHub: [@bennysptwn](https://github.com/bennysptwn)
+- LinkedIn: [@benny-salim](https://linkedin.com/in/benny-salim)
+- Instagram: [@bennysptwn_](https://instagram.com/bennysptwn_)
+
+---
+
+## 🗂️ Sections
+
+The portfolio is a single-page application with five route-based sections:
+
+| Route | Section | Description |
+|---|---|---|
+| `/home` | Home | Personal intro, metadata grid, social links, avatar |
+| `/about` | About | Bio, working fields (interactive cards), quotes |
+| `/experiences` | Experiences | Accordion-style work history, newest first |
+| `/work-samples` | Work Samples | Project list with category tabs (Personal / Open Client / Official) |
+| `/services` | Services | Manifesto, availability dashboard, working hours, booking, project interests, contact |
+
+---
+
+## 💼 Work History
+
+| # | Position | Company | Period |
+|---|---|---|---|
+| 01 | Senior Software Engineer | Nexus Technologies | Mar 2022 – Present |
+| 02 | Software Engineer | Brightwave Solutions | Jun 2020 – Feb 2022 |
+| 03 | Junior Front-End Developer | CodeCraft Agency | Jan 2019 – May 2020 |
+| 04 | Software Engineering Intern | DevStart | Jun 2018 – Dec 2018 |
+
+---
+
+## 🛠️ Working Fields
+
+| Field | Status |
+|---|---|
+| Software Engineer — Generalist (Full Stack) | ● Experienced |
+| Frontend Engineer (UI & Web Interfaces) | ● Experienced |
+| Mobile Engineer (Cross-platform) | ● Experienced |
+| Backend Engineer (APIs & Server Systems) | ● Experienced |
+| Platform & DevOps (Infrastructure & CI/CD) | ○ Learning |
+| AI Engineering (LLM Integration & ML Apps) | ○ Learning |
+
+---
+
+## 📦 Selected Projects
+
+| Title | Role | Category | Stack |
+|---|---|---|---|
+| portbybss | Designer & Developer | Personal | Angular, TypeScript, CSS |
+| FlowBoard | Lead Engineer | Personal | Angular, NestJS, WebSockets, Docker |
+| Mono UI Kit | Designer & Developer | Personal | TypeScript, Web Components, Storybook |
+| Spectral API Gateway | Back-End Engineer | Open Client | Node.js, Redis, JWT, AWS Lambda |
+| DevMetrics Dashboard | Full-Stack Engineer | Open Client | Angular, D3.js, FastAPI, PostgreSQL |
+| Pulse — Health Tracker | Mobile Web Developer | Official | Angular PWA, IndexedDB, Service Workers |
+
+---
+
+## ⚙️ Tech Stack
+
+### Framework & Language
+- **Angular 20** — standalone architecture, no NgModules
+- **TypeScript 5.8** — strict mode, no implicit `any`
+
+### State & Reactivity
+- **Angular Signals** — `signal()`, `computed()`, `effect()` for all local state
+- No RxJS for component state (only where Angular internals require it)
+
+### Styling
+- **Plain CSS only** — no Tailwind, Bootstrap, or any CSS framework
+- CSS custom properties for theming, spacing, typography, and animation tokens
+- Dark / light theme via `body.theme-dark` / `body.theme-light` class switching
+
+### Animation
+- **GSAP 3** — entrance animations, staggered reveals, interactive transitions
+- CSS `@keyframes` — typewriter effect, fade-in, background grid
+
+### Background
+- Custom `<canvas>` component — animated particle network with mouse repulsion + scrolling code snippets
+
+### Testing
+- **Karma + Jasmine** — unit tests
+- **fast-check** — property-based testing
+
+---
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   └── services/
+│   │       └── theme.service.ts        ← Signal-based dark/light theme
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── navigation/             ← Sidebar (desktop) + bottom bar (mobile)
+│   │   │   └── bg-canvas/              ← Animated canvas background
+│   │   ├── models/
+│   │   │   └── index.ts                ← All TypeScript interfaces & types
+│   │   └── constants/
+│   │       └── portfolio-data.ts       ← All content — edit here to update the site
+│   ├── layouts/
+│   │   └── shell/                      ← Layout wrapper (nav + router-outlet)
+│   ├── features/
+│   │   ├── home/
+│   │   ├── about/
+│   │   ├── experiences/
+│   │   ├── work-samples/
+│   │   └── services/
+│   ├── app.routes.ts                   ← Lazy-loaded feature routes
+│   └── app.config.ts                   ← Application providers
+└── styles.css                          ← Global tokens, reset, animations
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## ✏️ Customizing Content
 
-```bash
-ng generate component component-name
+All portfolio content lives in a single file:
+
+```
+src/app/shared/constants/portfolio-data.ts
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Update `PERSONAL_INFO`, `EXPERIENCES`, `PROJECTS`, `WORKING_FIELDS`, `SERVICE_CONFIG`, etc. — no component templates need to change.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 📐 Design Decisions
 
-To build the project run:
+- **Data-driven** — every section reads from typed constants. Updating the portfolio means editing one file.
+- **No CSS framework** — full control over every pixel, no specificity battles, no unused styles.
+- **Collapsible sidebar** — desktop sidebar can be minimized to icon-only mode. State is local (not persisted).
+- **Theme persistence** — selected theme is saved to `localStorage` under key `portbybss-theme`.
+- **Accessibility** — semantic HTML, ARIA labels, keyboard navigation, visible focus indicators, 4.5:1 contrast ratio.
+- **SSR-safe** — `ThemeService` guards all `localStorage` and `document` access with `isPlatformBrowser()`.
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 📄 License
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is personal and not licensed for reuse. Feel free to use it as inspiration, but please don't deploy it as-is with someone else's content.
