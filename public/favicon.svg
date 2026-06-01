@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Dark square background with rounded corners -->
+  <rect width="32" height="32" rx="6" fill="#050505"/>
+
+  <!-- Left bracket < -->
+  <polyline
+    points="11,10 6,16 11,22"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Right bracket > -->
+  <polyline
+    points="21,10 26,16 21,22"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Forward slash / -->
+  <line
+    x1="19"
+    y1="10"
+    x2="13"
+    y2="22"
+    stroke="#ffffff"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity="0.7"
+  />
+</svg>
