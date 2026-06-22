@@ -1,8 +1,8 @@
-import { Component, inject, signal, output } from '@angular/core';
+import { Component, inject, signal, computed, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ThemeService } from '../../../core/services/theme.service';
-import { NAV_LINKS } from '../../constants/portfolio-data';
+import { LanguageService } from '../../services/language.service';
 import type { NavLink } from '../../models';
 
 interface SanitizedNavLink extends NavLink {
@@ -18,15 +18,16 @@ interface SanitizedNavLink extends NavLink {
 })
 export class NavigationComponent {
   protected readonly themeService = inject(ThemeService);
+  protected readonly langService = inject(LanguageService);
   private readonly sanitizer = inject(DomSanitizer);
 
   protected readonly collapsed = signal(false);
   readonly collapsedChange = output<boolean>();
 
-  protected readonly navLinks: SanitizedNavLink[] = NAV_LINKS.map(link => ({
+  protected readonly navLinks = computed(() => this.langService.navLinks().map(link => ({
     ...link,
     safeSvgIcon: this.sanitizer.bypassSecurityTrustHtml(link.svgIcon)
-  }));
+  })));
 
   toggleCollapse(): void {
     const next = !this.collapsed();

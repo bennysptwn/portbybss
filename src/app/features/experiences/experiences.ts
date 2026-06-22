@@ -1,6 +1,7 @@
-import { Component, signal, AfterViewInit } from '@angular/core';
-import { EXPERIENCES } from '../../shared/constants/portfolio-data';
-import type { Experience } from '../../shared/models';
+import { Component, signal, inject, OnInit, AfterViewInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
+import { ExperienceService } from '../../shared/services/experience.service';
 import gsap from 'gsap';
 
 @Component({
@@ -9,16 +10,26 @@ import gsap from 'gsap';
   templateUrl: './experiences.html',
   styleUrl: './experiences.css'
 })
-export class ExperiencesComponent implements AfterViewInit {
-  protected readonly experiences: Experience[] = EXPERIENCES;
-  protected readonly openIndex = signal<number>(0);
+export class ExperiencesComponent implements OnInit, AfterViewInit {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
+  private readonly experienceService = inject(ExperienceService);
+
+  // Read from cached service signal — no re-fetch on navigation
+  protected readonly experiences = this.experienceService.data;
+  protected readonly openIndex   = signal<number>(0);
+
+  ngOnInit(): void {
+    this.titleService.setTitle('Experiences — Benny Septiawan Salim');
+    this.metaService.updateTag({ name: 'description', content: 'Professional work history and experience of Benny Septiawan Salim, Software Engineer & AI specialist based in Indonesia.' });
+    this.metaService.updateTag({ property: 'og:title', content: 'Experiences — Benny Septiawan Salim' });
+    this.metaService.updateTag({ property: 'og:description', content: 'Professional work history and experience of Benny Septiawan Salim, Software Engineer & AI.' });
+    this.metaService.updateTag({ property: 'og:url', content: 'https://portbybss.netlify.app/experiences' });
+  }
 
   toggle(index: number): void {
-    if (this.openIndex() === index) {
-      this.openIndex.set(-1);
-    } else {
-      this.openIndex.set(index);
-    }
+    this.openIndex.set(this.openIndex() === index ? -1 : index);
   }
 
   isOpen(index: number): boolean {
@@ -26,6 +37,7 @@ export class ExperiencesComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     gsap.from('.exp-row', {
       opacity: 0,
       y: 16,

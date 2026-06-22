@@ -43,3 +43,13 @@ Thumbs.db
 
 # kiro
 .kiro
+
+# Environment files (safety net)
+.env
+.env.*
+!.env.example
+
+# environment
+src/environments/environment.development.ts
+src/environments/environment.staging.ts
+src/environments/environment.production.ts

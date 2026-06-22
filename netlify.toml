@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build:netlify"
+  publish = "dist/portbybss/browser"
+
+# SPA fallback: for any path without a prerendered HTML file,
+# serve index.html and let Angular's client-side router handle it.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

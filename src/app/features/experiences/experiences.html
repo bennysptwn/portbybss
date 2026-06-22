@@ -8,11 +8,11 @@
 
   <div class="section-divider"></div>
 
-  @if (experiences.length === 0) {
+  @if (experiences().length === 0) {
     <p class="exp__empty">No experience entries yet.</p>
   } @else {
     <div class="exp__list">
-      @for (exp of experiences; track exp.companyName; let i = $index) {
+      @for (exp of experiences(); track exp.companyName; let i = $index) {
         <div class="exp-row" [class.exp-row--open]="isOpen(i)">
           <!-- Row header (always visible) -->
           <button

@@ -7,28 +7,28 @@
     </div>
 
     <!-- Alias -->
-    <p class="home__alias">{{ personalInfo.alias }}</p>
+    <p class="home__alias">{{ personalInfo().alias }}</p>
 
     <!-- Name -->
-    <h1 class="home__name">{{ personalInfo.name }}.</h1>
+    <h1 class="home__name">{{ personalInfo().name }}.</h1>
 
     <!-- Meta grid -->
     <div class="home__meta-grid">
       <div class="home__meta-item">
         <span class="home__meta-label">BORN</span>
-        <span class="home__meta-value">{{ personalInfo.born }}</span>
+        <span class="home__meta-value">{{ personalInfo().born }}</span>
       </div>
       <div class="home__meta-item">
         <span class="home__meta-label">BASED</span>
-        <span class="home__meta-value">{{ personalInfo.based }}</span>
+        <span class="home__meta-value">{{ personalInfo().based }}</span>
       </div>
       <div class="home__meta-item">
         <span class="home__meta-label">EDUCATION</span>
-        <span class="home__meta-value">{{ personalInfo.education }}</span>
+        <span class="home__meta-value">{{ personalInfo().education }}</span>
       </div>
       <div class="home__meta-item">
         <span class="home__meta-label">FOCUS</span>
-        <span class="home__meta-value">{{ personalInfo.focus }}</span>
+        <span class="home__meta-value">{{ personalInfo().focus }}</span>
       </div>
     </div>
 
@@ -38,7 +38,7 @@
         Work with me
         <span [innerHTML]="arrowIcon"></span>
       </a>
-      <a [href]="personalInfo.resumeUrl" class="home__btn home__btn--secondary" download>
+      <a [href]="personalInfo().resumeUrl" class="home__btn home__btn--secondary">
         <span [innerHTML]="downloadIcon"></span>
         Download Résumé
       </a>
@@ -46,18 +46,13 @@
 
     <!-- Social links -->
     <div class="home__social-row">
-      @for (link of socialLinks; track link.url) {
-        <a
-          [href]="link.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="home__social-link"
-          [attr.aria-label]="link.label"
-        >
-          <span class="home__social-platform">{{ link.label }}/</span>
-          <span class="home__social-handle">{{ link.handle }}</span>
-          <span [innerHTML]="arrowIcon"></span>
-        </a>
+      @for (link of socialLinks(); track link.url) {
+      <a [href]="link.url" target="_blank" rel="noopener noreferrer" class="home__social-link"
+        [attr.aria-label]="link.label">
+        <span class="home__social-platform">{{ link.label }}/</span>
+        <span class="home__social-handle">{{ link.handle }}</span>
+        <span [innerHTML]="arrowIcon"></span>
+      </a>
       }
     </div>
   </div>
@@ -66,20 +61,16 @@
   <div class="home__avatar-col">
     <div class="home__avatar-ring">
       @if (!avatarError()) {
-        <img
-          [src]="personalInfo.avatarPath"
-          [alt]="personalInfo.name + ' avatar'"
-          (error)="onAvatarError()"
-          class="home__avatar-img"
-        />
+      <img [src]="personalInfo().avatarPath" [alt]="personalInfo().name + ' avatar'" (error)="onAvatarError()"
+        class="home__avatar-img" />
       } @else {
-        <div class="home__avatar-fallback" aria-label="Avatar placeholder">
-          {{ personalInfo.name.charAt(0) }}
-        </div>
+      <div class="home__avatar-fallback" aria-label="Avatar placeholder">
+        {{ personalInfo().name.charAt(0) }}
+      </div>
       }
     </div>
     <div class="home__avatar-label">
-      <span>{{ personalInfo.title }}</span>
+      <span>{{ personalInfo().title }}</span>
     </div>
   </div>
 </section>

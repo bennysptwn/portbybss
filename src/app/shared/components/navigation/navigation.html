@@ -23,7 +23,7 @@
 
   <!-- Nav links -->
   <ul class="nav__links" role="list">
-    @for (link of navLinks; track link.path) {
+    @for (link of navLinks(); track link.path) {
       <li class="nav__item">
         <a
           [routerLink]="link.path"
@@ -40,6 +40,19 @@
       </li>
     }
   </ul>
+
+  <!-- Language toggle -->
+  <button
+    class="nav__theme-toggle nav__theme-toggle--desktop"
+    (click)="langService.toggleLanguage()"
+    [attr.aria-label]="'Switch language'"
+    [attr.title]="collapsed() ? 'Language' : null"
+    type="button"
+    style="margin-bottom: 8px;"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3h0a2 2 0 0 1 2 2v0a2 2 0 0 0 2 2h0a2 2 0 0 1 2 2v0a2 2 0 0 0 2 2h0a2 2 0 0 1 2 2v0a2 2 0 0 0 2 2h0a2 2 0 0 1 2 2v.54"/><path d="M2 12a10 10 0 1 0 20 0 10 10 0 0 0-20 0"/></svg>
+    @if (!collapsed()) { <span style="text-transform: uppercase;">{{ langService.language() }}</span> }
+  </button>
 
   <!-- Desktop theme toggle -->
   <button

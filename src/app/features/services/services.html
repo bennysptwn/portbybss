@@ -2,7 +2,7 @@
   <!-- Header -->
   <div class="svc__header">
     <p class="section-tag">§ 05</p>
-    <h1 class="section-heading">Services</h1>
+    <h1 class="section-heading">Open Services</h1>
     <p class="section-subheading">Why this isn't another ghost-town contact form.</p>
   </div>
 
@@ -12,64 +12,63 @@
   <div class="svc__top-grid">
     <div class="svc__manifesto">
       <p class="svc__manifesto-label">MANIFESTO</p>
-      <p class="svc__manifesto-text">{{ config.manifesto }}</p>
-      <p class="svc__manifesto-sub">{{ config.manifestoSub }}</p>
+      <p class="svc__manifesto-text">{{ config().manifesto }}</p>
+      <p class="svc__manifesto-sub">{{ config().manifestoSub }}</p>
     </div>
 
     <div class="svc__availability">
       <p class="svc__avail-label">AVAILABILITY</p>
       <div class="svc__avail-status">
-        <span class="svc__avail-dot"
-          [class.svc__avail-dot--available]="availability === 'available'"
-          [class.svc__avail-dot--limited]="availability === 'limited'"
-          [class.svc__avail-dot--unavailable]="availability === 'unavailable'"></span>
-        <span class="svc__avail-text"
-          [class.svc__avail-text--available]="availability === 'available'"
-          [class.svc__avail-text--limited]="availability === 'limited'"
-          [class.svc__avail-text--unavailable]="availability === 'unavailable'">{{ availabilityLabel[availability] }}</span>
+        <span class="svc__avail-dot" [class.svc__avail-dot--available]="availability() === 'available'"
+          [class.svc__avail-dot--limited]="availability() === 'limited'"
+          [class.svc__avail-dot--unavailable]="availability() === 'unavailable'"></span>
+        <span class="svc__avail-text" [class.svc__avail-text--available]="availability() === 'available'"
+          [class.svc__avail-text--limited]="availability() === 'limited'"
+          [class.svc__avail-text--unavailable]="availability() === 'unavailable'">{{ availabilityLabel[availability()]
+          }}</span>
       </div>
       <div class="svc__currently">
-        <p class="svc__currently-label">CURRENTLY</p>
-        @for (item of config.currentlyDoing; track $index) {
-          <p class="svc__currently-item">— {{ item }}</p>
+        <p class="svc__currently-label">OPEN SERVICES</p>
+        @for (item of config().services; track $index) {
+        <p class="svc__currently-item">— {{ item }}</p>
         }
       </div>
     </div>
   </div>
 
-  <!-- Stats dashboard -->
+  <!-- Stats dashboard
   <div class="svc__stats-section">
     <p class="svc__stats-label">CLIENT TRANSPARENCY DASHBOARD</p>
     <div class="svc__stats-grid">
       <div class="svc__stat">
         <span class="svc__stat-label">TOTAL PROJECTS</span>
-        <span class="svc__stat-value">{{ config.stats.total.toString().padStart(2, '0') }}</span>
+        <span class="svc__stat-value">{{ config().stats.total.toString().padStart(2, '0') }}</span>
       </div>
       <div class="svc__stat">
         <span class="svc__stat-label">ACTIVE</span>
-        <span class="svc__stat-value">{{ config.stats.active.toString().padStart(2, '0') }}</span>
+        <span class="svc__stat-value">{{ config().stats.active.toString().padStart(2, '0') }}</span>
       </div>
       <div class="svc__stat">
         <span class="svc__stat-label">PENDING</span>
-        <span class="svc__stat-value">{{ config.stats.pending.toString().padStart(2, '0') }}</span>
+        <span class="svc__stat-value">{{ config().stats.pending.toString().padStart(2, '0') }}</span>
       </div>
       <div class="svc__stat">
         <span class="svc__stat-label">FINISHED</span>
-        <span class="svc__stat-value">{{ config.stats.finished.toString().padStart(2, '0') }}</span>
+        <span class="svc__stat-value">{{ config().stats.finished.toString().padStart(2, '0') }}</span>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Bottom grid: hours + booking -->
   <div class="svc__bottom-grid">
     <div class="svc__hours">
-      <p class="svc__hours-label">HOURS · {{ config.timezone }}</p>
+      <p class="svc__hours-label">HOURS · {{ config().timezone }}</p>
       <table class="svc__hours-table">
-        @for (row of config.workingHours; track row.day) {
-          <tr class="svc__hours-row">
-            <td class="svc__hours-day">{{ row.day }}</td>
-            <td class="svc__hours-time">{{ row.hours }}</td>
-          </tr>
+        @for (row of config().workingHours; track row.day) {
+        <tr class="svc__hours-row">
+          <td class="svc__hours-day">{{ row.day }}</td>
+          <td class="svc__hours-time">{{ row.hours }}</td>
+        </tr>
         }
       </table>
     </div>
@@ -81,20 +80,20 @@
       </p>
       <h2 class="svc__booking-title">Pick a slot, get a calendar invite.</h2>
       <p class="svc__booking-desc">
-        Powered by Google Calendar Appointment Schedule. You choose a free 30-minute slot — the invite, Meet link, and reminders are generated automatically. No back-and-forth, no "does Tuesday work?".
+        Powered by Calendly Appointment Schedule. You choose a free 30-minute slot — the invite, Meet link, and
+        reminders are generated automatically. No back-and-forth, no "does Tuesday work?".
       </p>
       <div class="svc__booking-actions">
-        @if (schedulingLink) {
-          <a [href]="schedulingLink" target="_blank" rel="noopener noreferrer"
-             class="svc__btn svc__btn--primary" aria-label="Schedule a call">
-            Schedule a call <span [innerHTML]="arrowIcon"></span>
-          </a>
+        @if (schedulingLink()) {
+        <a [href]="schedulingLink()" target="_blank" rel="noopener noreferrer" class="svc__btn svc__btn--primary"
+          aria-label="Schedule a call">
+          Schedule a call <span [innerHTML]="arrowIcon"></span>
+        </a>
         } @else {
-          <span class="svc__btn svc__btn--disabled" aria-disabled="true">Schedule a call</span>
+        <span class="svc__btn svc__btn--disabled" aria-disabled="true">Schedule a call</span>
         }
-        <a [href]="'mailto:' + email" class="svc__btn svc__btn--secondary"
-           [attr.aria-label]="'Email ' + email">
-          ✉ {{ email }}
+        <a [href]="'mailto:' + email()" class="svc__btn svc__btn--secondary" [attr.aria-label]="'Email ' + email()">
+          ✉ {{ email() }}
         </a>
       </div>
     </div>
@@ -103,16 +102,17 @@
   <!-- What I'm interested in -->
   <div class="svc__interests-section">
     <div class="svc__interests-header">
-      <p class="svc__stats-label">WHAT I'M INTERESTED IN BUILDING</p>
-      <p class="svc__interests-sub">Not every project is a fit — and that's fine. Here's what gets me genuinely excited.</p>
+      <p class="svc__stats-label">PROJECTS I LOVE TO BUILD & STUDY</p>
+      <p class="svc__interests-sub">Not every project is a fit — and that's fine. Here's what gets me genuinely excited.
+      </p>
     </div>
     <div class="svc__interests-grid">
-      @for (interest of config.projectInterests; track interest.title) {
-        <div class="svc__interest-card">
-          <span class="svc__interest-emoji" aria-hidden="true">{{ interest.emoji }}</span>
-          <h3 class="svc__interest-title">{{ interest.title }}</h3>
-          <p class="svc__interest-desc">{{ interest.description }}</p>
-        </div>
+      @for (interest of config().projectInterests; track interest.title) {
+      <div class="svc__interest-card">
+        <span class="svc__interest-emoji" aria-hidden="true">{{ interest.emoji }}</span>
+        <h3 class="svc__interest-title">{{ interest.title }}</h3>
+        <p class="svc__interest-desc">{{ interest.description }}</p>
+      </div>
       }
     </div>
   </div>
@@ -123,17 +123,15 @@
       <div class="svc__contact-text">
         <p class="svc__stats-label">CONTACT ME DIRECTLY</p>
         <h2 class="svc__contact-title">Can't make a meeting? Just email.</h2>
-        <p class="svc__contact-desc">{{ config.contactNote }}</p>
+        <p class="svc__contact-desc">{{ config().contactNote }}</p>
       </div>
       <div class="svc__contact-action">
-        <a
-          href="mailto:bennysptwn@gmail.com?subject=Project%20Inquiry"
-          class="svc__btn svc__btn--primary svc__btn--large"
-          aria-label="Send email to bennysptwn@gmail.com"
-        >
+        <a href="mailto:bennysptwn@gmail.com?subject=Project%20Inquiry"
+          class="svc__btn svc__btn--primary svc__btn--large" aria-label="Send email to bennysptwn@gmail.com">
           ✉ bennysptwn&#64;gmail.com <span [innerHTML]="arrowIcon"></span>
         </a>
-        <p class="svc__contact-note">↳ Reply within 4 working days · No ghosting.</p>
+        <p class="svc__contact-note">↳ Reply within 1-2 working days (Mon - Sat) & working hours · No ghosting · Fast
+          Response</p>
       </div>
     </div>
   </div>

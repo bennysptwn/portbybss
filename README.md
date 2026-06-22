@@ -1,6 +1,6 @@
 # portbybss
 
-Personal portfolio website of **Benny Septiawan Salim** — a Full-Stack Software Engineer based in Tangerang, Indonesia.
+Personal portfolio website of **Benny Septiawan Salim** — a Full-Stack Software Engineer based in Indonesia.
 
 Built with Angular 20, standalone architecture, and zero CSS frameworks. Minimalist black & white aesthetic with an interactive canvas background, collapsible sidebar, and fully data-driven content.
 
@@ -19,10 +19,10 @@ Built with Angular 20, standalone architecture, and zero CSS frameworks. Minimal
 | **Name** | Benny Septiawan Salim |
 | **Alias** | bennysptwn |
 | **Born** | Jambi, 24 September 2001 |
-| **Based** | Tangerang, Indonesia |
+| **Based** | Indonesia |
 | **Education** | Bachelor of Informatics — Universitas Multimedia Nusantara |
-| **Focus** | Software Development |
-| **Email** | hello@bennysptwn.dev |
+| **Focus** | Software Development, AI Enthusiasat |
+| **Email** | bennysptwn@gmail.com |
 | **Contact** | bennysptwn@gmail.com |
 
 **Socials**
@@ -62,11 +62,7 @@ The portfolio is a single-page application with five route-based sections:
 | Field | Status |
 |---|---|
 | Software Engineer — Generalist (Full Stack) | ● Experienced |
-| Frontend Engineer (UI & Web Interfaces) | ● Experienced |
-| Mobile Engineer (Cross-platform) | ● Experienced |
-| Backend Engineer (APIs & Server Systems) | ● Experienced |
-| Platform & DevOps (Infrastructure & CI/CD) | ○ Learning |
-| AI Engineering (LLM Integration & ML Apps) | ○ Learning |
+| AI Engineering (LLM Integration & AI / ML Apps) | ○ Learning |
 
 ---
 
@@ -75,11 +71,6 @@ The portfolio is a single-page application with five route-based sections:
 | Title | Role | Category | Stack |
 |---|---|---|---|
 | portbybss | Designer & Developer | Personal | Angular, TypeScript, CSS |
-| FlowBoard | Lead Engineer | Personal | Angular, NestJS, WebSockets, Docker |
-| Mono UI Kit | Designer & Developer | Personal | TypeScript, Web Components, Storybook |
-| Spectral API Gateway | Back-End Engineer | Open Client | Node.js, Redis, JWT, AWS Lambda |
-| DevMetrics Dashboard | Full-Stack Engineer | Open Client | Angular, D3.js, FastAPI, PostgreSQL |
-| Pulse — Health Tracker | Mobile Web Developer | Official | Angular PWA, IndexedDB, Service Workers |
 
 ---
 

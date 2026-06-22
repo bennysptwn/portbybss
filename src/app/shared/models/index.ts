@@ -1,64 +1,44 @@
-// src/app/shared/models/index.ts
 
-export interface SocialLink {
-  label: string;
-  url: string;
-  handle: string;           // e.g. "@alexrivera"
-  iconIdentifier: string;
-}
 
-export interface Technology {
-  name: string;
-}
+export type { SocialLink, SocialLinkRow } from './social-link.model';
+export { mapSocialLink } from './social-link.model';
 
-export interface WorkingField {
-  title: string;
-  subtitle: string;
-  technologies: Technology[];
-  status: 'learning' | 'experienced';
-}
+export type { BiographyRow } from './biography.model';
+export { mapBiography } from './biography.model';
 
-export interface Experience {
-  companyName: string;
-  companyShort: string;     // short label shown inline e.g. "@ Nexus Technologies"
-  position: string;
-  employmentDate: string;
-  descriptions: string[];
-}
+export type { Technology, WorkingField, WorkingFieldRow } from './working-field.model';
+export { mapWorkingField } from './working-field.model';
 
-export interface Project {
-  title: string;
-  role: string;
-  technologies: string[];
-  description: string;
-  link: string;
-  category: 'personal' | 'open-client' | 'official';
-}
+export type { Quote, QuoteRow } from './quote.model';
+export { mapQuote } from './quote.model';
 
-export interface ServiceItem {
-  title: string;
-  description: string;
-  iconIdentifier: string;
-}
+export type { Experience, ExperienceRow } from './experience.model';
+export { mapExperience } from './experience.model';
+
+export type { Project, ProjectRow } from './project.model';
+export { mapProject } from './project.model';
+
+export type {
+  WorkingHour,
+  ServiceStats,
+  ProjectInterest,
+  ServiceConfig,
+  ServiceConfigRow
+} from './service-config.model';
+export { mapServiceConfig } from './service-config.model';
 
 export interface PersonalInfo {
   name: string;
-  alias: string;            // e.g. "alexrivera a.k.a"
+  alias: string;
   title: string;
   tagline: string;
   avatarPath: string;
-  born: string;             // e.g. "Jakarta, 1 Jan 1995"
-  based: string;            // e.g. "Jakarta, Indonesia"
-  education: string;        // e.g. "Bachelor of CS — Universitas X"
-  focus: string;            // e.g. "Software Development"
+  born: string;
+  based: string;
+  education: string;
+  focus: string;
   resumeUrl: string;
   email: string;
-}
-
-export interface Quote {
-  text: string;
-  author: string;
-  source?: string;
 }
 
 export interface NavLink {
@@ -67,33 +47,10 @@ export interface NavLink {
   svgIcon: string;
 }
 
-export interface WorkingHour {
-  day: string;
-  hours: string;
-}
+export type AvailabilityStatus = 'available' | 'limited' | 'unavailable';
 
-export interface ServiceStats {
-  total: number;
-  active: number;
-  pending: number;
-  finished: number;
-}
-
-export interface ServiceConfig {
-  manifesto: string;
-  manifestoSub: string;
-  currentlyDoing: string[];
-  workingHours: WorkingHour[];
-  stats: ServiceStats;
-  timezone: string;
-  projectInterests: ProjectInterest[];
-  contactNote: string;
-}
-
-export interface ProjectInterest {
+export interface ServiceItem {
   title: string;
   description: string;
-  emoji: string;
+  iconIdentifier: string;
 }
-
-export type AvailabilityStatus = 'available' | 'limited' | 'unavailable';
