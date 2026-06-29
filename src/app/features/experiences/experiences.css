@@ -61,7 +61,7 @@
 
 .exp-row__title-block {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: var(--space-3);
     flex-wrap: wrap;
 }
@@ -78,6 +78,16 @@
     color: var(--color-text-muted);
     font-weight: 400;
     font-family: 'JetBrains Mono', monospace;
+}
+
+/* Company logo — shown in accordion header when imageUrl is set */
+.exp-row__logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: block;
 }
 
 .exp-row__chevron {

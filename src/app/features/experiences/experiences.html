@@ -23,6 +23,17 @@
           >
             <span class="exp-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
             <div class="exp-row__title-block">
+              @if (exp.imageUrl) {
+                <img
+                  class="exp-row__logo"
+                  [src]="exp.imageUrl"
+                  [alt]="exp.companyName + ' logo'"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              }
               <span class="exp-row__position">{{ exp.position }}</span>
               <span class="exp-row__company">&#64; {{ exp.companyShort }}</span>
             </div>

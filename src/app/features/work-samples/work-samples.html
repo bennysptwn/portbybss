@@ -36,7 +36,18 @@
           [attr.aria-label]="'View ' + project.title"
         >
           <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          <div class="project-row__body">
+          @if (project.imageUrl) {
+            <img
+              class="project-row__thumb"
+              [src]="project.imageUrl"
+              [alt]="project.title + ' thumbnail'"
+              width="80"
+              height="60"
+              loading="lazy"
+              decoding="async"
+            />
+          }
+          <div class="project-row__body" [class.project-row__body--no-thumb]="!project.imageUrl">
             <div class="project-row__title-line">
               <span class="project-row__title">{{ project.title }}</span>
               <span class="project-row__role">/ {{ project.role }}</span>
@@ -53,7 +64,18 @@
       } @else {
         <div class="project-row project-row--disabled" aria-disabled="true">
           <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          <div class="project-row__body">
+          @if (project.imageUrl) {
+            <img
+              class="project-row__thumb"
+              [src]="project.imageUrl"
+              [alt]="project.title + ' thumbnail'"
+              width="80"
+              height="60"
+              loading="lazy"
+              decoding="async"
+            />
+          }
+          <div class="project-row__body" [class.project-row__body--no-thumb]="!project.imageUrl">
             <div class="project-row__title-line">
               <span class="project-row__title">{{ project.title }}</span>
               <span class="project-row__role">/ {{ project.role }}</span>
