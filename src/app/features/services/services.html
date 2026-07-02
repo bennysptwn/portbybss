@@ -8,6 +8,8 @@
 
   <div class="section-divider"></div>
 
+
+
   <!-- Top grid: manifesto + availability -->
   <div class="svc__top-grid">
     <div class="svc__manifesto">
@@ -35,29 +37,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Stats dashboard
-  <div class="svc__stats-section">
-    <p class="svc__stats-label">CLIENT TRANSPARENCY DASHBOARD</p>
-    <div class="svc__stats-grid">
-      <div class="svc__stat">
-        <span class="svc__stat-label">TOTAL PROJECTS</span>
-        <span class="svc__stat-value">{{ config().stats.total.toString().padStart(2, '0') }}</span>
-      </div>
-      <div class="svc__stat">
-        <span class="svc__stat-label">ACTIVE</span>
-        <span class="svc__stat-value">{{ config().stats.active.toString().padStart(2, '0') }}</span>
-      </div>
-      <div class="svc__stat">
-        <span class="svc__stat-label">PENDING</span>
-        <span class="svc__stat-value">{{ config().stats.pending.toString().padStart(2, '0') }}</span>
-      </div>
-      <div class="svc__stat">
-        <span class="svc__stat-label">FINISHED</span>
-        <span class="svc__stat-value">{{ config().stats.finished.toString().padStart(2, '0') }}</span>
-      </div>
-    </div>
-  </div> -->
 
   <!-- Bottom grid: hours + booking -->
   <div class="svc__bottom-grid">
@@ -99,41 +78,58 @@
     </div>
   </div>
 
-  <!-- What I'm interested in -->
-  <div class="svc__interests-section">
-    <div class="svc__interests-header">
-      <p class="svc__stats-label">PROJECTS I LOVE TO BUILD & STUDY</p>
-      <p class="svc__interests-sub">Not every project is a fit — and that's fine. Here's what gets me genuinely excited.
-      </p>
+  <!-- B2B Soft Sell: Inquiry Form -->
+  <div class="svc__inquiry-form">
+    <div class="svc__inquiry-header">
+      <p class="svc__stats-label">{{ inquiryForm().sectionLabel }}</p>
+      <h2 class="svc__inquiry-title">{{ inquiryForm().title }}</h2>
+      <p class="svc__inquiry-subtitle">{{ inquiryForm().subtitle }}</p>
     </div>
-    <div class="svc__interests-grid">
-      @for (interest of config().projectInterests; track interest.title) {
-      <div class="svc__interest-card">
-        <span class="svc__interest-emoji" aria-hidden="true">{{ interest.emoji }}</span>
-        <h3 class="svc__interest-title">{{ interest.title }}</h3>
-        <p class="svc__interest-desc">{{ interest.description }}</p>
-      </div>
-      }
-    </div>
-  </div>
 
-  <!-- Contact section -->
-  <div class="svc__contact-section">
-    <div class="svc__contact-inner">
-      <div class="svc__contact-text">
-        <p class="svc__stats-label">CONTACT ME DIRECTLY</p>
-        <h2 class="svc__contact-title">Can't make a meeting? Just email.</h2>
-        <p class="svc__contact-desc">{{ config().contactNote }}</p>
-      </div>
-      <div class="svc__contact-action">
-        <a href="mailto:bennysptwn@gmail.com?subject=Project%20Inquiry"
-          class="svc__btn svc__btn--primary svc__btn--large" aria-label="Send email to bennysptwn@gmail.com">
-          ✉ bennysptwn&#64;gmail.com <span [innerHTML]="arrowIcon"></span>
-        </a>
-        <p class="svc__contact-note">↳ Reply within 1-2 working days (Mon - Sat) & working hours · No ghosting · Fast
-          Response</p>
+    @if (formState() === 'success') {
+    <div class="svc__form-feedback svc__form-feedback--ok" role="status" aria-live="polite">
+      <span class="svc__form-feedback-icon">✓</span>
+      <div>
+        <p class="svc__form-feedback-title">Message received!</p>
+        <p class="svc__form-feedback-sub">I'll get back to you within 1–2 working days.</p>
       </div>
     </div>
-  </div>
+    } @else {
+    <form class="svc__form-grid" (ngSubmit)="sendInquiry()" #inquiryFrm="ngForm" novalidate>
+      <!-- Name + Email row -->
+      <div class="svc__form-row">
+        <div class="svc__form-field">
+          <label class="svc__form-label" for="inq-name">{{ inquiryForm().nameLabel }}</label>
+          <input id="inq-name" class="svc__form-input" type="text" [placeholder]="inquiryForm().namePlaceholder"
+            [value]="formName()" (input)="formName.set($any($event.target).value)" autocomplete="name" required />
+        </div>
+        <div class="svc__form-field">
+          <label class="svc__form-label" for="inq-email">{{ inquiryForm().emailLabel }}</label>
+          <input id="inq-email" class="svc__form-input" type="email" [placeholder]="inquiryForm().emailPlaceholder"
+            [value]="formEmail()" (input)="formEmail.set($any($event.target).value)" autocomplete="email" required />
+        </div>
+      </div>
 
+      <!-- Message -->
+      <div class="svc__form-field">
+        <label class="svc__form-label" for="inq-message">{{ inquiryForm().messageLabel }}</label>
+        <textarea id="inq-message" class="svc__form-textarea" [placeholder]="inquiryForm().messagePlaceholder"
+          [value]="formMessage()" (input)="formMessage.set($any($event.target).value)" rows="5" required></textarea>
+      </div>
+
+      <!-- Submit row -->
+      <div class="svc__form-submit-row">
+        <button id="inq-submit" class="svc__btn svc__btn--primary" type="submit" [disabled]="formState() === 'sending'"
+          [class.svc__btn--sending]="formState() === 'sending'" [attr.aria-label]="inquiryForm().submitLabel">
+          @if (formState() === 'sending') {
+          <span class="svc__btn-spinner" aria-hidden="true"></span> Sending…
+          } @else {
+          {{ inquiryForm().submitLabel }} <span [innerHTML]="arrowIcon"></span>
+          }
+        </button>
+        <p class="svc__form-note">{{ inquiryForm().note }}</p>
+      </div>
+    </form>
+    }
+  </div>
 </section>

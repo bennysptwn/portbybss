@@ -56,3 +56,19 @@ export const NAV_LINKS_ID: NavLink[] = [
   { label: 'Karya', path: '/work-samples', svgIcon: getIcon('nav-work-samples') },
   { label: 'Layanan', path: '/services', svgIcon: getIcon('nav-services') }
 ];
+
+// ── Inquiry Form (B2B Soft Sell) ──────────────────────────────────────────────
+
+export const INQUIRY_FORM_ID = {
+  sectionLabel: 'MULAI PROYEK',
+  title: "Siap membangun sesuatu yang berdampak?",
+  subtitle: "Punya tantangan bisnis yang butuh solusi teknologi? Ceritakan kepada saya — saya akan merespons dalam 1–2 hari kerja.",
+  namePlaceholder: 'Nama Anda',
+  nameLabel: 'Nama',
+  emailPlaceholder: 'anda@email.com',
+  emailLabel: 'Email',
+  messagePlaceholder: 'Deskripsikan proyek, tantangan, atau ide Anda — semakin detail, semakin baik.',
+  messageLabel: 'Pesan',
+  submitLabel: 'Kirim Pesan',
+  note: '↳ Tidak ada komitmen di awal · Respons 1–2 hari kerja · Pasti dibalas'
+} as const;

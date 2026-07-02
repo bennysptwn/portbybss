@@ -65,3 +65,19 @@ export const NAV_LINKS_EN: NavLink[] = [
   { label: 'Work Samples', path: '/work-samples', svgIcon: getIcon('nav-work-samples') },
   { label: 'Services', path: '/services', svgIcon: getIcon('nav-services') }
 ];
+
+// ── Inquiry Form (B2B Soft Sell) ──────────────────────────────────────────────
+
+export const INQUIRY_FORM_EN = {
+  sectionLabel: 'START A PROJECT',
+  title: "Ready to build something impactful?",
+  subtitle: "Got a business challenge that needs a tech solution? Tell me about it — I'll get back to you within 1–2 working days.",
+  namePlaceholder: 'Your Name',
+  nameLabel: 'Name',
+  emailPlaceholder: 'your@email.com',
+  emailLabel: 'Email',
+  messagePlaceholder: 'Describe your project, challenge, or idea — the more detail, the better.',
+  messageLabel: 'Message',
+  submitLabel: 'Send Inquiry',
+  note: '↳ No commitment required · 1–2 day response · No ghosting'
+} as const;
