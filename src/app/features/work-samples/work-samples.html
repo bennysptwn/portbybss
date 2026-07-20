@@ -11,85 +11,97 @@
   <!-- Category tabs -->
   <div class="tab-bar" role="tablist" aria-label="Project categories">
     @for (cat of categories; track cat.key) {
-      <button
-        class="tab-bar__btn"
-        [class.active]="activeCategory() === cat.key"
-        (click)="setCategory(cat.key)"
-        role="tab"
-        [attr.aria-selected]="activeCategory() === cat.key"
-        type="button"
-      >
-        {{ cat.label }} [{{ countFor(cat.key) }}]
-      </button>
+    <button class="tab-bar__btn" [class.active]="activeCategory() === cat.key" (click)="setCategory(cat.key)" role="tab"
+      [attr.aria-selected]="activeCategory() === cat.key" type="button">
+      {{ cat.label }} [{{ countFor(cat.key) }}]
+    </button>
     }
   </div>
 
   <!-- Project rows -->
   <div class="ws__list">
-    @for (project of filteredProjects(); track project.title; let i = $index) {
-      @if (project.link) {
-        <a
-          [href]="project.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="project-row project-row--link"
-          [attr.aria-label]="'View ' + project.title"
-        >
-          <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          @if (project.imageUrl) {
-            <img
-              class="project-row__thumb"
-              [src]="project.imageUrl"
-              [alt]="project.title + ' thumbnail'"
-              width="80"
-              height="60"
-              loading="lazy"
-              decoding="async"
-            />
-          }
-          <div class="project-row__body" [class.project-row__body--no-thumb]="!project.imageUrl">
-            <div class="project-row__title-line">
-              <span class="project-row__title">{{ project.title }}</span>
-              <span class="project-row__role">/ {{ project.role }}</span>
-            </div>
-            <p class="project-row__desc">{{ project.description }}</p>
-            <div class="project-row__tags">
-              @for (tech of project.technologies; track tech) {
-                <span class="project-row__tag">{{ tech }}</span>
-              }
-            </div>
-          </div>
-          <span class="project-row__arrow" [innerHTML]="arrowIcon" aria-hidden="true"></span>
-        </a>
-      } @else {
-        <div class="project-row project-row--disabled" aria-disabled="true">
-          <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          @if (project.imageUrl) {
-            <img
-              class="project-row__thumb"
-              [src]="project.imageUrl"
-              [alt]="project.title + ' thumbnail'"
-              width="80"
-              height="60"
-              loading="lazy"
-              decoding="async"
-            />
-          }
-          <div class="project-row__body" [class.project-row__body--no-thumb]="!project.imageUrl">
-            <div class="project-row__title-line">
-              <span class="project-row__title">{{ project.title }}</span>
-              <span class="project-row__role">/ {{ project.role }}</span>
-            </div>
-            <p class="project-row__desc">{{ project.description }}</p>
-            <div class="project-row__tags">
-              @for (tech of project.technologies; track tech) {
-                <span class="project-row__tag">{{ tech }}</span>
-              }
-            </div>
-          </div>
-          <span class="project-row__arrow project-row__arrow--disabled" aria-hidden="true">—</span>
+    @if (isLoading() || error()) {
+      <app-data-state [loading]="isLoading()" [error]="error()" errorMessage="Failed to load projects." />
+    } @else {
+      @for (project of filteredProjects(); track project.title; let i = $index) {
+    @if (project.link) {
+    <a [href]="project.link" target="_blank" rel="noopener noreferrer" class="project-row project-row--link"
+      [attr.aria-label]="'View ' + project.title">
+      <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
+      @if (project.imageUrl) {
+      <img class="project-row__thumb" [src]="project.imageUrl" [alt]="project.title + ' thumbnail'" width="80"
+        height="60" loading="lazy" decoding="async" />
+      }
+      <div class="project-row__body" [class.project-row__body--no-thumb]="!project.imageUrl">
+        <div class="project-row__title-line">
+          <span class="project-row__title">{{ project.title }}</span>
+          <span class="project-row__role">/ {{ project.role }}</span>
         </div>
+        <p class="project-row__desc">{{ project.description }}</p>
+        <div class="project-row__tags">
+          @for (tech of project.technologies; track tech) {
+          <span class="project-row__tag">{{ tech }}</span>
+          }
+        </div>
+        <!-- Attachment strip -->
+        @if (project.attachmentUrls.length > 0) {
+        <div class="project-row__attachments">
+          @for (url of project.attachmentUrls; track url; let j = $index) {
+          <button class="project-row__attach-thumb" type="button" (click)="openLightbox(project, j, $event)"
+            [attr.aria-label]="'View attachment ' + (j + 1) + ' of ' + project.attachmentUrls.length">
+            <img [src]="url" [alt]="project.title + ' attachment ' + (j + 1)" width="96" height="72" loading="lazy"
+              decoding="async" />
+          </button>
+          }
+        </div>
+        }
+      </div>
+      <span class="project-row__arrow" [innerHTML]="arrowIcon" aria-hidden="true"></span>
+    </a>
+    } @else {
+    <div class="project-row project-row--disabled" aria-disabled="true">
+      <span class="project-row__num">{{ (i + 1).toString().padStart(2, '0') }}</span>
+      @if (project.imageUrl) {
+      <img class="project-row__thumb" [src]="project.imageUrl" [alt]="project.title + ' thumbnail'" width="80"
+        height="60" loading="lazy" decoding="async" />
+      }
+      <div class="project-row__body" [class.project-row__body--no-thumb]="!project.imageUrl">
+        <div class="project-row__title-line">
+          <span class="project-row__title">{{ project.title }}</span>
+          <span class="project-row__role">/ {{ project.role }}</span>
+        </div>
+        <p class="project-row__desc">{{ project.description }}</p>
+        <div class="project-row__tags">
+          @for (tech of project.technologies; track tech) {
+          <span class="project-row__tag">{{ tech }}</span>
+          }
+        </div>
+        <!-- Attachment strip -->
+        @if (project.attachmentUrls.length > 0) {
+        <div class="project-row__attachments">
+          @for (url of project.attachmentUrls; track url; let j = $index) {
+          <button class="project-row__attach-thumb" type="button" (click)="openLightbox(project, j, $event)"
+            [attr.aria-label]="'View attachment ' + (j + 1) + ' of ' + project.attachmentUrls.length">
+            <img [src]="url" [alt]="project.title + ' attachment ' + (j + 1)" width="96" height="72" loading="lazy"
+              decoding="async" />
+          </button>
+          }
+        </div>
+        }
+      </div>
+      <span class="project-row__arrow project-row__arrow--disabled" aria-hidden="true">—</span>
+    </div>
+    }
+    } @empty {
+        <p class="section-subheading" style="padding: var(--space-8) 0; text-align: center;">
+          No projects found in this category.
+        </p>
       }
     }
   </div>
+
+  <!-- Lightbox -->
+  @if (lightboxImages().length > 0) {
+  <app-image-lightbox [images]="lightboxImages()" [startIndex]="lightboxStartIndex()" (close)="closeLightbox()" />
+  }
 </section>

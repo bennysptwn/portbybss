@@ -34,7 +34,7 @@
 .fields-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-5);
+    gap: var(--space-6); /* Adjusted gap as per user request */
     align-content: start;
 }
 
@@ -43,7 +43,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    padding: var(--space-5) var(--space-5) var(--space-6);
+    padding: var(--space-6);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -51,6 +51,8 @@
     text-align: left;
     font-family: inherit;
     position: relative;
+    height: 100%; /* fix button height inside grid */
+    min-height: min-content;
     box-shadow:
         0 1px 0 var(--color-border),
         0 3px 0 rgba(0, 0, 0, 0.18),
@@ -74,26 +76,26 @@
         0 10px 20px rgba(0, 0, 0, 0.28);
 }
 
-/* Active: white card, black text — clean inversion */
+/* Active: white card, black text */
 .field-card--active {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background: #ffffff;
+    border-color: #ffffff;
     transform: translateY(-3px);
     box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.15),
-        0 5px 0 rgba(0, 0, 0, 0.25),
-        0 8px 0 rgba(0, 0, 0, 0.12),
+        0 1px 0 rgba(0, 0, 0, 0.1),
+        0 5px 0 rgba(0, 0, 0, 0.18),
+        0 8px 0 rgba(0, 0, 0, 0.08),
         0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .field-card--active .field-card__status,
 .field-card--active .field-card__title {
-    color: var(--color-bg);
+    color: #000000;
 }
 
 .field-card--active .field-card__dot--exp,
 .field-card--active .field-card__dot--learn {
-    background: var(--color-bg);
+    background: #000000;
 }
 
 .field-card__status {
@@ -288,7 +290,7 @@
     .field-card--active {
         transform: none;
         box-shadow:
-            0 1px 0 rgba(255, 255, 255, 0.1),
+            0 1px 0 var(--color-border),
             0 2px 8px rgba(0, 0, 0, 0.25);
     }
 

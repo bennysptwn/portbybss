@@ -1,0 +1,33 @@
+@if (error()) {
+  <div class="ds__error" role="alert" aria-live="assertive">
+    <div class="ds__icon-wrap ds__icon-wrap--error">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+        <path d="M12 9v4"/>
+        <path d="M12 17h.01"/>
+      </svg>
+    </div>
+    <div class="ds__content">
+      <h3 class="ds__title">System Error</h3>
+      <p class="ds__message">{{ errorMessage() }}</p>
+      @if (errorDetails) {
+        <code class="ds__detail">{{ errorDetails }}</code>
+      }
+    </div>
+  </div>
+} @else if (loading()) {
+  <div class="ds__loading" role="status" aria-live="polite">
+    <div class="ds__scanner" aria-hidden="true">
+      <div class="ds__scanner-line"></div>
+      <div class="ds__scanner-grid"></div>
+    </div>
+    <div class="ds__content-center">
+      <span class="ds__loading-text">Fetching data...</span>
+      <div class="ds__loading-bars" aria-hidden="true">
+        <div class="ds__bar"></div>
+        <div class="ds__bar"></div>
+        <div class="ds__bar"></div>
+      </div>
+    </div>
+  </div>
+}

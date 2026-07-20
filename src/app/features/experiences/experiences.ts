@@ -2,11 +2,13 @@ import { Component, signal, inject, OnInit, AfterViewInit, PLATFORM_ID } from '@
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { ExperienceService } from '../../shared/services/experience.service';
+import { DataStateComponent } from '../../shared/components/data-state/data-state';
 import gsap from 'gsap';
 
 @Component({
   selector: 'app-experiences',
   standalone: true,
+  imports: [DataStateComponent],
   templateUrl: './experiences.html',
   styleUrl: './experiences.css'
 })
@@ -18,6 +20,8 @@ export class ExperiencesComponent implements OnInit, AfterViewInit {
 
   // Read from cached service signal — no re-fetch on navigation
   protected readonly experiences = this.experienceService.data;
+  protected readonly isLoading   = this.experienceService.isLoading;
+  protected readonly error       = this.experienceService.error;
   protected readonly openIndex   = signal<number>(0);
 
   ngOnInit(): void {

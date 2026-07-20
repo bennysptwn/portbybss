@@ -8,8 +8,8 @@
 
   <div class="section-divider"></div>
 
-  @if (experiences().length === 0) {
-    <p class="exp__empty">No experience entries yet.</p>
+  @if (isLoading() || error()) {
+    <app-data-state [loading]="isLoading()" [error]="error()" errorMessage="Failed to load experiences." />
   } @else {
     <div class="exp__list">
       @for (exp of experiences(); track exp.companyName; let i = $index) {
@@ -62,6 +62,8 @@
             </div>
           }
         </div>
+      } @empty {
+        <p class="exp__empty">No experience entries yet.</p>
       }
     </div>
   }

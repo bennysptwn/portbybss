@@ -1,0 +1,87 @@
+<!-- Backdrop -->
+<div class="lightbox__backdrop" (click)="onClose()" aria-hidden="true"></div>
+
+<!-- Modal panel -->
+<div
+  class="lightbox__panel"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="'Image ' + (currentIndex() + 1) + ' of ' + total()"
+>
+  <!-- Top bar -->
+  <div class="lightbox__topbar">
+    <span class="lightbox__counter">{{ currentIndex() + 1 }} / {{ total() }}</span>
+    <button
+      class="lightbox__close"
+      type="button"
+      (click)="onClose()"
+      aria-label="Close lightbox"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Image area -->
+  <div class="lightbox__image-wrap">
+    <!-- Prev -->
+    @if (hasPrev()) {
+      <button
+        class="lightbox__nav lightbox__nav--prev"
+        type="button"
+        (click)="prev()"
+        aria-label="Previous image"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+    }
+
+    <img
+      class="lightbox__image"
+      [src]="currentImage()"
+      [alt]="'Attachment ' + (currentIndex() + 1)"
+      loading="eager"
+      decoding="async"
+    />
+
+    <!-- Next -->
+    @if (hasNext()) {
+      <button
+        class="lightbox__nav lightbox__nav--next"
+        type="button"
+        (click)="next()"
+        aria-label="Next image"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </button>
+    }
+  </div>
+
+  <!-- Dot indicators -->
+  @if (total() > 1) {
+    <div class="lightbox__dots" role="tablist" aria-label="Image navigation">
+      @for (img of images(); track img; let j = $index) {
+        <button
+          class="lightbox__dot"
+          [class.lightbox__dot--active]="currentIndex() === j"
+          type="button"
+          role="tab"
+          [attr.aria-selected]="currentIndex() === j"
+          [attr.aria-label]="'Go to image ' + (j + 1)"
+          (click)="goTo(j)"
+        ></button>
+      }
+    </div>
+  }
+</div>

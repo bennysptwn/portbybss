@@ -9,6 +9,7 @@ export interface Project {
   link: string;
   category: 'personal' | 'open-client' | 'official';
   imageUrl: string | null;
+  attachmentUrls: string[];
 }
 
 /** Supabase DB row shape (snake_case) */
@@ -22,6 +23,7 @@ export interface ProjectRow {
   category: 'personal' | 'open-client' | 'official';
   order_index: number;
   image_path: string | null;
+  attachment_paths: string[] | null;
 }
 
 export function mapProject(row: ProjectRow): Project {
@@ -33,5 +35,8 @@ export function mapProject(row: ProjectRow): Project {
     link: row.link ?? '',
     category: row.category,
     imageUrl: buildStorageUrl(row.image_path),
+    attachmentUrls: (row.attachment_paths ?? [])
+      .map(p => buildStorageUrl(p))
+      .filter((u): u is string => u !== null),
   };
 }

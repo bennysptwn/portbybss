@@ -72,64 +72,9 @@
         <span class="svc__btn svc__btn--disabled" aria-disabled="true">Schedule a call</span>
         }
         <a [href]="'mailto:' + email()" class="svc__btn svc__btn--secondary" [attr.aria-label]="'Email ' + email()">
-          ✉ {{ email() }}
+          ✉ email : {{ email() }}
         </a>
       </div>
     </div>
-  </div>
-
-  <!-- B2B Soft Sell: Inquiry Form -->
-  <div class="svc__inquiry-form">
-    <div class="svc__inquiry-header">
-      <p class="svc__stats-label">{{ inquiryForm().sectionLabel }}</p>
-      <h2 class="svc__inquiry-title">{{ inquiryForm().title }}</h2>
-      <p class="svc__inquiry-subtitle">{{ inquiryForm().subtitle }}</p>
-    </div>
-
-    @if (formState() === 'success') {
-    <div class="svc__form-feedback svc__form-feedback--ok" role="status" aria-live="polite">
-      <span class="svc__form-feedback-icon">✓</span>
-      <div>
-        <p class="svc__form-feedback-title">Message received!</p>
-        <p class="svc__form-feedback-sub">I'll get back to you within 1–2 working days.</p>
-      </div>
-    </div>
-    } @else {
-    <form class="svc__form-grid" (ngSubmit)="sendInquiry()" #inquiryFrm="ngForm" novalidate>
-      <!-- Name + Email row -->
-      <div class="svc__form-row">
-        <div class="svc__form-field">
-          <label class="svc__form-label" for="inq-name">{{ inquiryForm().nameLabel }}</label>
-          <input id="inq-name" class="svc__form-input" type="text" [placeholder]="inquiryForm().namePlaceholder"
-            [value]="formName()" (input)="formName.set($any($event.target).value)" autocomplete="name" required />
-        </div>
-        <div class="svc__form-field">
-          <label class="svc__form-label" for="inq-email">{{ inquiryForm().emailLabel }}</label>
-          <input id="inq-email" class="svc__form-input" type="email" [placeholder]="inquiryForm().emailPlaceholder"
-            [value]="formEmail()" (input)="formEmail.set($any($event.target).value)" autocomplete="email" required />
-        </div>
-      </div>
-
-      <!-- Message -->
-      <div class="svc__form-field">
-        <label class="svc__form-label" for="inq-message">{{ inquiryForm().messageLabel }}</label>
-        <textarea id="inq-message" class="svc__form-textarea" [placeholder]="inquiryForm().messagePlaceholder"
-          [value]="formMessage()" (input)="formMessage.set($any($event.target).value)" rows="5" required></textarea>
-      </div>
-
-      <!-- Submit row -->
-      <div class="svc__form-submit-row">
-        <button id="inq-submit" class="svc__btn svc__btn--primary" type="submit" [disabled]="formState() === 'sending'"
-          [class.svc__btn--sending]="formState() === 'sending'" [attr.aria-label]="inquiryForm().submitLabel">
-          @if (formState() === 'sending') {
-          <span class="svc__btn-spinner" aria-hidden="true"></span> Sending…
-          } @else {
-          {{ inquiryForm().submitLabel }} <span [innerHTML]="arrowIcon"></span>
-          }
-        </button>
-        <p class="svc__form-note">{{ inquiryForm().note }}</p>
-      </div>
-    </form>
-    }
   </div>
 </section>
