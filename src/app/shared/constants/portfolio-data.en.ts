@@ -39,7 +39,7 @@ export const PERSONAL_INFO_EN: PersonalInfo = {
   based: 'Indonesia',
   education: 'Bachelor of Informatics — Universitas Multimedia Nusantara',
   focus: 'Software Engineering & AI',
-  resumeUrl: 'https://drive.google.com/file/d/1WjLcDkiPmE_3A95i0tHfZE1o3BuVDYyT/view?usp=sharing',
+  resumeUrl: 'https://drive.google.com/file/d/1__uJNKD22_I-UyluDIsbiPSh6rnVRNRi/view?usp=sharing',
   email: 'bennysptwn@gmail.com'
 };
 
